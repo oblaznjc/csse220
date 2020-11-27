@@ -1,6 +1,6 @@
 /**
  * Greetings, earthlings.
- * @author Many people, including YOUR-NAME-HERE.
+ * @author Many people, including Jacob Oblazny.
  */
 public class HelloPrinter {
 

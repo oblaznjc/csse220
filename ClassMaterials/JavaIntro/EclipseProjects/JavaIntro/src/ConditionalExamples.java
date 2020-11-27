@@ -30,8 +30,8 @@ public class ConditionalExamples {
 	 * if we're talking about integers often the easier way is to
 	 * just multiply several times
 	 */
-	public static int computedCubed(double numberToCube) {
-		return 0;
+	public static double computedCubed(double numberToCube) {
+		return (numberToCube * numberToCube * numberToCube);
 	}
 
 	/**
@@ -69,7 +69,13 @@ public class ConditionalExamples {
 	 * see how that compares to the real value.
 	 */
 	public static void guessCubeRoot(double number, double guess) {
-		
+		if (guess * guess * guess > number) {
+			System.out.println("Lower");
+		} else if (guess * guess * guess < number) {
+			System.out.println("Higher");
+		} else {
+			System.out.println("Perfect");
+		}
 	}
 	
 	/**
@@ -82,6 +88,9 @@ public class ConditionalExamples {
 	 * second.
 	 */
 	public static boolean isWayBigger (int bigger, int smaller) {
+		if ( bigger >= 100 * smaller) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -96,6 +105,9 @@ public class ConditionalExamples {
 	 * Solve this one yourself
 	 */
 	public static boolean isGreaterThan3 (int one, int two, int three) {
+		if (one > 3 || two > 3 || three > 3) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -104,7 +116,24 @@ public class ConditionalExamples {
 		System.out.println("Average of 3 4 5 is " + computeAverage(3, 4, 5));
 		System.out.println("Average of 3 4 6 is " + computeAverage(3, 4, 6));
 		
+		System.out.println("Cube of 3 is " + computedCubed(3));
+		System.out.println("Cube of 3.1 is " + computedCubed(3.1));
+		
 		printDivisibleBy3(12); // note in this case we print within the function
 		printDivisibleBy3(13);
+		
+		guessCubeRoot(27,2.5);
+		guessCubeRoot(27,3);
+		guessCubeRoot(27,3.5);
+		
+		System.out.println("999 is way bigger than 1: " + isWayBigger(999,1));
+		System.out.println("100 is way bigger than 1: " + isWayBigger(100,1));
+		System.out.println("99 is way bigger than 1: " + isWayBigger(99,1));
+		
+		System.out.println("1, 2, or 3 is larger than 3: " + isGreaterThan3(1,2,3));
+		System.out.println("1, 2, or 4 is larger than 3: " + isGreaterThan3(1,2,4));
+		System.out.println("55, 2, or 4 is larger than 3: " + isGreaterThan3(55,2,4));
+
+
 	}
 }

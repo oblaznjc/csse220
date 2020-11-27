@@ -37,8 +37,12 @@ public class LoopProbs {
 	 * 
 	 */
 	public static long fact(int num) {
-		// TODO: Please provide an implementation for this one
-		return 0;
+		// DONE: Please provide an implementation for this one
+		long current = 1;
+		for(int i = 1; i <= num; i++) {
+			current = current * i;
+		}
+		return current;
 	}
 	
 	/**
@@ -78,8 +82,17 @@ public class LoopProbs {
 	 * null returns ""
 	 */
 	public static String stringBits(String str) {
-		// TODO: Please provide an implementation for this one
-		return null;
+		// DONE: Please provide an implementation for this one
+		if(str == null || str.length() == 0) {
+			return "";
+		}
+		String current = "";
+		int i = 0;
+		while(i < str.length()) {
+			current = current + str.charAt(i);
+			i = i + 2;
+		}
+		return current;
 	}
 
 	
@@ -128,8 +141,27 @@ public class LoopProbs {
 	 * "aaxxxb" should return false because the last x is followed by b
 	 */
 	public static boolean pairedX(String str) {
-		// TODO: Please provide an implementation for this one
+		// DONE: Please provide an implementation for this one
+	Boolean result = false;
+	if(str.length() < 2 || str.contains("x") != true) {
 		return false;
+	}
+	int index = 0;
+	while(index < str.length()) {
+		if(str.charAt(index) == 'x') {
+			if(index < str.length() - 1 && str.charAt(index + 1) == 'x') {
+				result = true;
+				index = index + 2;
+			}
+			else {
+				return false;
+			}
+		}	
+		else {
+		++index;
+		}
+	}
+	return result;
 	}
 
 	
