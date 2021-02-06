@@ -2,7 +2,7 @@
 /**
  * TODO Put here a description of what this class does.
  *
- * @author TODO <Add your name here>.
+ * @author Jacob Oblazny
  *         Created Dec 15, 2013.
  */
 public class Two2DArrayProblems {
@@ -112,6 +112,13 @@ public class Two2DArrayProblems {
 	 * @param input 
 	 * @return the shortest Manhattan distance from the person to 
 	 * an exit.
+	 * 
+	 * Thoughts:
+	 * Solve for all(exit to @ Delta X)
+	 * Solve for all(exit to @ Delta Y)
+	 * Minimize(Delta x + Delta y)
+	 * 
+	 * 
 	 */
 	public static int distanceToExit(char[][] input) {
 		int atRow = -1;

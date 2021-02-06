@@ -1,44 +1,45 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 /**
- * This class simulates the quiz creation and updating along with testing scenario
+ * This class simulates the quiz creation and updating along with testing
+ * scenario
  * 
- * @author YOUR_USERNAME
+ * @author oblaznjc
  *
  */
 public class QuizSimulatorMain {
 
-	
-	//TODO add instance variables
-	
-	//Used to remind user of commands available
-	public final static String HELP_STRING = "create-question [id] [answer] [prompt]\n" 
-											+ "create-quiz [id] \n"
-											+ "create-quiz-tester [id] [searchString] \n"
-											+ "report-overall-quiz-tester-score [id] \n"
-											+ "report-quiz-tester-score-on-quiz [testerId] [quizId] \n"
-											+ "add-question-to-quiz [questionId] [quizId] \n"
-											+ "display-quiz [quizId] \n"
-											+ "display-question-prompt [questionId]  \n"
-											+ "update-question [questionId] [answer] [prompt]\n ";
+	// TODO add instance variables
+	private HashMap<Integer, Question> questionMap = new HashMap<Integer, Question>();
+	private HashMap<Integer, Quiz> quizMap = new HashMap<Integer, Quiz>();
+	private HashMap<Integer, QuizTest> quizTestMap = new HashMap<Integer, QuizTest>();
+
+	// Used to remind user of commands available
+	public final static String HELP_STRING = "create-question [id] [answer] [prompt]\n" + "create-quiz [id] \n"
+			+ "create-quiz-tester [id] [searchString] \n" + "report-overall-quiz-tester-score [id] \n"
+			+ "report-quiz-tester-score-on-quiz [testerId] [quizId] \n"
+			+ "add-question-to-quiz [questionId] [quizId] \n" + "display-quiz [quizId] \n"
+			+ "display-question-prompt [questionId]  \n" + "update-question [questionId] [answer] [prompt]\n ";
 
 	public static void main(String[] args) {
 		QuizSimulatorMain simulator = new QuizSimulatorMain();
 		System.out.println("Welcome to QuizTester.  Enter commands.  Type 'exit' to end.");
 		System.out.println("Enter [help] for a list of commands.");
-		System.out.println( HELP_STRING );
-		
+		System.out.println(HELP_STRING);
+
 		Scanner scanner = new Scanner(System.in);
-		while(true) {
+		while (true) {
 			String commandLine = scanner.nextLine();
 			String result = simulator.handleCommand(commandLine);
 			System.out.println(result);
 		}
 	}
+
 	/**
-	 *  Do not change this method, it parses the input from the user so you don't have to.
-	 *  It then calls the handler methods that you are required to implement 
+	 * Do not change this method, it parses the input from the user so you don't
+	 * have to. It then calls the handler methods that you are required to implement
 	 * 
 	 * @param command
 	 * @return
@@ -47,14 +48,14 @@ public class QuizSimulatorMain {
 		Scanner input = new Scanner(command);
 		String commandType = input.next();
 		String toReturn = null;
-		if(commandType.equals("help")) {
-			toReturn= HELP_STRING;
-		} else if(commandType.equals("create-question")) {
+		if (commandType.equals("help")) {
+			toReturn = HELP_STRING;
+		} else if (commandType.equals("create-question")) {
 			int id = input.nextInt();
 			boolean answer = input.nextBoolean();
 			String prompt = input.nextLine();
 			handleCreateQuestion(id, answer, prompt);
-			toReturn = "OK: created question";	
+			toReturn = "OK: created question";
 		} else if (commandType.equals("create-quiz")) {
 			int id = input.nextInt();
 			handleCreateQuiz(id);
@@ -92,15 +93,14 @@ public class QuizSimulatorMain {
 			String prompt = input.nextLine();
 			handleUpdateQuestion(id, answer, prompt);
 			toReturn = "OK: question updated";
-		} else if(commandType.equals("exit")) {
+		} else if (commandType.equals("exit")) {
 			input.close();
 			System.exit(0);
-		}
-		else {
+		} else {
 			toReturn = "Unknown command " + commandType;
 		}
 		input.close();
-		
+
 		return toReturn;
 	}
 
@@ -112,8 +112,10 @@ public class QuizSimulatorMain {
 	 * @param prompt
 	 */
 	public void handleCreateQuestion(int id, boolean answer, String prompt) {
-		//TODO complete this method
+		Question question = new Question(id, answer, prompt);
+		this.questionMap.put(id, question);
 	}
+
 	/**
 	 * Get back the String prompt from a question with id questionId
 	 * 
@@ -121,81 +123,95 @@ public class QuizSimulatorMain {
 	 * @return
 	 */
 	public String handleGetQuestionPrompt(int questionId) {
-		//TODO complete this method
-		return null;
+		return this.questionMap.get(questionId).getPrompt();
+
 	}
+
 	/**
 	 * Create a quiz with corresponding id, initially it should have no questions
 	 * 
 	 * @param id
 	 */
 	public void handleCreateQuiz(int id) {
-		//TODO complete this method
+		Quiz quiz = new Quiz(id);
+		this.quizMap.put(id, quiz);
 	}
+
 	/**
-	 * Adds an already created question with id=questionId to an already created quiz with id=quizId
+	 * Adds an already created question with id=questionId to an already created
+	 * quiz with id=quizId
 	 * 
 	 * @param questionId
 	 * @param quizId
 	 */
-	public void handleAddQuestionToQuiz(int questionId, int quizId ) {
-		//TODO complete this method
+	public void handleAddQuestionToQuiz(int questionId, int quizId) {
+		quizMap.get(quizId).addQuestion(questionMap.get(questionId));
 	}
+
 	/**
-	 * Updates a question with questionId  with a new answer and prompt
+	 * Updates a question with questionId with a new answer and prompt
 	 * 
 	 * @param questionId
 	 * @param answer
 	 * @param prompt
 	 */
 	public void handleUpdateQuestion(int questionId, boolean answer, String prompt) {
-		//TODO complete this method
+		questionMap.get(questionId).setAnswer(answer);
+		questionMap.get(questionId).setPrompt(prompt);
 	}
+
 	/**
 	 * 
-	 * This method should return a String presentation of a quiz which then gets displayed to the screen via handle command
-	 * you can add "\n" to a String to create a line break, so that when printed it will go to the next line
+	 * This method should return a String presentation of a quiz which then gets
+	 * displayed to the screen via handle command you can add "\n" to a String to
+	 * create a line break, so that when printed it will go to the next line
 	 * 
-	 * This method is not unit tested, so you can represent it how you like, but test it manually for yourself
+	 * This method is not unit tested, so you can represent it how you like, but
+	 * test it manually for yourself
 	 * 
 	 * @param quizId
 	 */
 	public String handleGetQuizString(int quizId) {
-		//TODO complete this method
-		return null;
+		Quiz quiz = quizMap.get(quizId);
+		return quiz.display();
 	}
+
 	/**
-	 * Creates a new QuizTester with a provide id and searchString used to answer questions
+	 * Creates a new QuizTester with a provide id and searchString used to answer
+	 * questions
 	 * 
 	 * @param id
 	 * @param searchString
 	 */
 	public void handleCreateQuizTester(int id, String searchString) {
-		//TODO complete this method
+		QuizTest quizTest = new QuizTest(id, searchString);
+		this.quizTestMap.put(id, quizTest);
+		// System.out.println("Successfully created quizTest: "+ id + " with
+		// searchString: " + searchString);
 	}
+
 	/**
-	 * Returns a double with the percentage a given QuizTester with id quizTesterId
-	 *  gets on a quiz with id quizId
+	 * Returns a double with the percentage a given QuizTester with id quizTestId
+	 * gets on a quiz with id quizId
 	 * 
-	 * @param quizTesterId
+	 * @param quizTestId
 	 * @param quizId
 	 * @return
 	 */
-	public double handleGetQuizTesterScoreOnQuiz( int quizTesterId, int quizId) {
-		//TODO complete this method
-		return -1;
-	}
-	/**
-	 * Take an id for a QuizTester and then finds the average score of that QuizTester
-	 * on ALL Quizzes in the simulator. Note this is different than the average on all the individual problems
-	 * 
-	 * @param quizTesterId
-	 * @return
-	 */
-	public double handleGetQuizTesterOverallScore( int quizTesterId) {
-		//TODO complete this method
-		return -1;
+	public double handleGetQuizTesterScoreOnQuiz(int quizTestId, int quizId) {
+		return quizTestMap.get(quizTestId).testQuiz(quizMap.get(quizId));
 	}
 
-	
+	/**
+	 * Take an id for a QuizTester and then finds the average score of that
+	 * QuizTester on ALL Quizzes in the simulator. Note this is different than the
+	 * average on all the individual problems
+	 * 
+	 * @param quizTestId
+	 * @return
+	 */
+	public double handleGetQuizTesterOverallScore(int quizTestId) {
+		return quizTestMap.get(quizTestId).testAllQuizzes(quizMap);
+	}
+
 }

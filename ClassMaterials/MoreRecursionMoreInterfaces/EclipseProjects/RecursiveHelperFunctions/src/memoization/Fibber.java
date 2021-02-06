@@ -23,21 +23,21 @@ public class Fibber {
 
 		Fibber fibber = new Fibber();
 		
+//		long startTime = System.currentTimeMillis();
+//
+//		long f = fibber.fib(MAX);
+//		System.out.printf(msg, MAX, f);
+//		
+//		long endTime = System.currentTimeMillis();
+//		System.out.printf("Calculated %d Fibonacci numbers in %.3f seconds.%n",
+//				MAX, (endTime - startTime) / 1000.0);
+		
+		
 		long startTime = System.currentTimeMillis();
-
-		long f = fibber.fib(MAX);
+		long f = fibber.fibWithMemo(MAX);
 		System.out.printf(msg, MAX, f);
 		
 		long endTime = System.currentTimeMillis();
-		System.out.printf("Calculated %d Fibonacci numbers in %.3f seconds.%n",
-				MAX, (endTime - startTime) / 1000.0);
-		
-		
-		startTime = System.currentTimeMillis();
-		f = fibber.fibWithMemo(MAX);
-		System.out.printf(msg, MAX, f);
-		
-		endTime = System.currentTimeMillis();
 		System.out.printf("Calculated %d Fibonacci numbers WITH MEMOIZATION in %.3f seconds.",
 				MAX, (endTime - startTime) / 1000.0);
 

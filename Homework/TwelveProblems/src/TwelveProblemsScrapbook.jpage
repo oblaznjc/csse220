@@ -1,0 +1,13 @@
+int count = 0;
+		for(int i = 0; i < longer.length - shorter.length; i++) {
+			int equal_indexes = 0;
+			for(int i2 = 0; i2 < shorter.length; i2++) {
+				if(shorter[i + i2] == longer[i + i2]) {
+					++equal_indexes;
+				}
+			}
+			if(equal_indexes == shorter.length) {
+				++count;
+			}
+		}
+		return count;

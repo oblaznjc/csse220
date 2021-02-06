@@ -1,5 +1,7 @@
 package slides;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -36,7 +38,9 @@ public class BreakfastMain {
 		JButton eatButton = new JButton("Eat Porridge");
 		frame.add(eatButton);
 		// TODO: add an ActionListener using an external class
-
+		ActionListener ear = new MyListener(frame); 
+		eatButton.addActionListener(ear);
+		
 		// TODO: add an ActionListener using an inner class
 
 		// TODO: add an ActionListener using an anonymous class

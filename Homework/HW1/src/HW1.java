@@ -15,8 +15,9 @@ public class HW1 {
 	 * 
 	 * addFraction(1,2,1,4) returns 0.75
 	 */
-	public static double addFraction(int num1, int den1, int num2, int den2) {
-		return 0;
+	public static double addFraction(double num1, double den1, double num2, double den2) {
+		double decimal_result = (num1 / den1) + (num2 / den2);
+		return decimal_result;
 	}
 	
 	/**
@@ -38,8 +39,16 @@ public class HW1 {
 	 * @return a score
 	 */
 	public static int footballScore(String input) {
-
-		return 0;
+		int score = 0;
+		for(int index = 0; index < input.length(); index++) {
+			if(input.charAt(index) == 'T') {
+				score = score + 7;
+			}
+			else {
+				score = score + 3;
+			}
+		}
+		return score;
 	}
 	
 }//end class HW1

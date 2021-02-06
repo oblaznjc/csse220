@@ -23,7 +23,12 @@ public class TranslateComponent extends JComponent {
 		// always appears in the center of the window
 		// HINT: use getWidth() and getHeight() to find the right size
 		
-
+		
+		
+		g2.translate(this.getWidth()/2, this.getHeight()/2);
+		g2.translate(-100,  -75);
+				
+		
 		// draws a face, with upper left hand corner 0 0
 		// you do not need to edit this code
 		g2.drawRect(0, 0, 200, 150);
@@ -32,6 +37,9 @@ public class TranslateComponent extends JComponent {
 		g2.drawRect(60, 80, 80, 40);
 		
 		//WARNING: be sure to always undo any translate you've done
+		g2.translate(-this.getWidth()/2, -this.getHeight()/2);
+		g2.translate(100,  75);
+		g2.drawRect(10, 10, 50, 50);
 		
 	}
 	

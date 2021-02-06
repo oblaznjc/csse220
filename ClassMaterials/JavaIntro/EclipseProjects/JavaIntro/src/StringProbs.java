@@ -100,10 +100,10 @@ public class StringProbs {
 	 * "abc" & "abc" returns false
 	 */	
 	public static boolean first4Match(String one, String two) {
-		if(one.length() < 4 || two.length() < 4) {
+		if (one.length() < 4 || two.length() < 4) {
 			return false;
 		}
-		if(one.substring(0, 4).equals(two.substring(0, 4))) {
+		if (one.substring(0, 4).equals(two.substring(0, 4))) {
 			return true;
 		} else {
 			return false;

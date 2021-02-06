@@ -1,19 +1,26 @@
 Reflection Questions:
 
 1.A In your implementation could you replace Questions with Strings (yes or no)? 
-
+Yes
 
 1.B Why or why not? (2-3 sentences)
 
+This is possible by just having a questionId as the Key.
+The corresponding object as the questionData.
+Any changes would be made by editing the HashMap based on the key.
 
 
 2.A. What data type did you use to represent the 1 to many relationship between QuizMain and Question? (provide type)
-
+Hash Map
 
 2.B. What is another type could you have used? (provide type) 
-
+Array List
 
 
 2.C. Would that have made the code better or worse? Why? (2-3 sentences)
+Worse
 
+The Array List would force me to keep the questions in order.
+Array List would also require me to store an identical array list
+in the Quiz Main and Quiz class with 
 

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * This class provides some buggy methods that you can use to practice with the
  * debugger. 
@@ -11,6 +13,7 @@ public class DebugMe {
 	 * This formula for this is:
 	 * 
 	 * n!/(n-k)!
+	 * 
 	 */
 	public static int kPermutations(int n, int k) {
 		int nFact = 1;
@@ -21,7 +24,6 @@ public class DebugMe {
 		for(int j = 2; j <= n - k; j++) {
 			nMinusKFact = nMinusKFact*j;
 		}
-		
 		return nFact/nMinusKFact;
 	}
 
@@ -41,7 +43,7 @@ public class DebugMe {
 	public static String uppercaseIfExclaimation(String sentence) {
 
 		if(sentence.charAt(sentence.length() - 1) == '!') {
-			sentence.toUpperCase();
+			sentence = sentence.toUpperCase();
 		} 
 		return sentence;
 	}
@@ -65,19 +67,19 @@ public class DebugMe {
 	public static boolean isArrayDoubled(int[] input) {
 
 		int[] firstHalf = new int[input.length/2];
-		int[] secondHalf = new int[input.length/2];
+		int[] secondHalf = new int[input.length/2]; 
 		for(int i = 0; i < input.length/2; i++) {
 			firstHalf[i] = input[i];
 			secondHalf[i] = input[input.length/2 + i];
 		}
-		boolean result = firstHalf.equals(secondHalf);
+		boolean result = Arrays.equals(firstHalf, secondHalf);
 		return result;
 	}
-
+ 
 	
 	public static int praticeCreatingExceptionBreakpoint() {
 		int[] foo = {1,2,3};
-		return foo[100];
+		return foo[1];
 	}
 
 	

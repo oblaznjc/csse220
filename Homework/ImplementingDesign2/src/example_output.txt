@@ -59,3 +59,21 @@ report-quiz-tester-score-on-quiz 1 3
 OK: Individual Score:0.0
 report-quiz-tester-score-on-quiz 2 3
 OK: Individual Score:1.0
+
+report-overall-quiz-tester-score 1
+report-overall-quiz-tester-score 2
+report-overall-quiz-tester-score 3
+
+
+create-quiz 1
+create-question 1 false "billy is my name"
+add-question-to-quiz 1 1
+
+create-question 2 true "jacob is my name"
+create-question 3 false "willie is my name"
+add-question-to-quiz 2 1
+add-question-to-quiz 3 1
+display-quiz 1
+
+
+

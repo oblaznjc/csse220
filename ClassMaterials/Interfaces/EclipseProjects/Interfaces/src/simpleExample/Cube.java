@@ -7,7 +7,7 @@ package simpleExample;
  * @author Jason Yoder
  *
  */
-public class Cube {
+public class Cube implements Weighable {
 
 	public static final double VOLUME_TO_MASS_RATIO =0.2;
 	private double sideLength;
@@ -24,5 +24,10 @@ public class Cube {
 	@Override
 	public String toString() {
 		return "Cube[s="+this.sideLength+"]";
+	}
+
+	@Override
+	public double getWeightInLbs() {
+		return getMassInKG() * 2.2 ;
 	}
 }

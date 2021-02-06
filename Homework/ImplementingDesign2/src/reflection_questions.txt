@@ -1,17 +1,35 @@
 Reflection Questions:
 
 1. Compare your original draft and the final draft. What is the biggest difference between the two?
-
-
+	
+	The biggest changes were made in the Quiz class in which I added the methods addQuestion(question : Question), and display(numQuestion : int).
+	The display() method was the most complicated and resulted in my messiest solution as it requires a complicated input and recursion. 
+	However I did get to make use of recursion seriously which was an exciting educational experience. 
 
 2. What did you have to change and why did you have to change it? If not, explain how you made your decisions in designing.
 
+	Some of the small changes included adding the setters in the Question class which are normally assumed 
+	but in this case it was especially relevant for the handleUpdateQuestion() method in Main.
+	
+	Furthermore, I removed a connection from QuizTester to Quiz. Instead I now have a quiz/quizMap passed into each quiztester when I need to test it.
 
+	Lastly I had to make an invisible change from my first draft in the type of storage I assumed I would use in QuizSimulatorMain(). 
+	Specifically I assumed I would store the three classes as lists in the Main Class. However because we called each class using an ID
+	I set the key of a hashmap as the ID and the value/object as the actual quiz/question/tester so I could easily find them.
 
 3. Did you re-use your code from ImplementingDesign1? How much did you have to change it if so? (If not, then please explain why)
-
-
+ 
+ 	No I did not reuse any code from ImplementingDesign1.
+ 	I thought that it would be better to start from scratch to practice the creation of classes.
+	Also I didn't think there was enough repetition in the grand scheme of ImplementingDesign2 
+	to make it a significant enough time saver to duplicate.
 
 4. Select one or more specific design principles and discuss how they relate to the your experience in designing and implementing the code for this assignment.
 
+	Design Principle: 2b
 
+	One situation in which I heavily considered the importance of encapsulation was in the handleGetQuizTesterOverallScore method
+	which may have been easier to code directly in the QuizSimulatorMain class by calling the handleGetQuizTesterScoreOnQuiz on each quiz and solving for the average
+	Instead I pushed the functionality deeper into the program by making all calculations in the QuizTest and returning the overallScore.
+	This would prove to be an important implementation of design principle 2b which allows for easier editing and understanding by future programmers
+	by "pushing intelligence down".

@@ -33,16 +33,20 @@ public class PandemicStatsComponent extends JComponent {
 	private ArrayList<Integer> healthyLog = new ArrayList<Integer>();
 	private ArrayList<Integer> infectedLog = new ArrayList<Integer>();
 	private ArrayList<Integer> recoveredLog = new ArrayList<Integer>();
+	private ArrayList<Integer> deadLog = new ArrayList<Integer>();
+
 	
 	public PandemicStatsComponent() {
 		this.setPreferredSize(new Dimension(SimulationViewer.FRAME_WIDTH, STATS_HEIGHT) );
 	}
 	
 	//add to the logs
-	public void addEntry(int heathy, int sick, int recovered ) {
+	public void addEntry(int heathy, int sick, int recovered, int dead ) {
 		this.healthyLog.add(heathy);
 		this.infectedLog.add(sick);
 		this.recoveredLog.add(recovered);
+		this.deadLog.add(dead);
+
 	}
 	
 	//reset the logs
@@ -50,6 +54,8 @@ public class PandemicStatsComponent extends JComponent {
 		this.healthyLog.clear();
 		this.infectedLog.clear();
 		this.recoveredLog.clear();
+		this.deadLog.clear();
+
 	}
 	
 	@Override
@@ -66,25 +72,31 @@ public class PandemicStatsComponent extends JComponent {
 		if ( recoveredLog.size() > 0) {
 			//Use color constants so that they line up with the color of the Person categories.
 			g2.setColor(Person.RECOVERED_COLOR);
-			g2.drawString("Recovered:" + recoveredLog.get(recoveredLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT/4 );
+			g2.drawString("Recovered:" + recoveredLog.get(recoveredLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT/5 );
 			
 			g2.setColor(Person.HEALTHY_COLOR);
-			g2.drawString("Healthy:" + healthyLog.get(healthyLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT*2/4);
+			g2.drawString("Healthy:" + healthyLog.get(healthyLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT*2/5);
 			
 			g2.setColor(Person.INFECTED_COLOR);
-			g2.drawString("Infected:" + infectedLog.get(infectedLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT*3/4 );
+			g2.drawString("Infected:" + infectedLog.get(infectedLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT*3/5 );
+			
+			g2.setColor(Person.DEAD_COLOR);
+			g2.drawString("Dead:" + infectedLog.get(infectedLog.size()-1 ), SIDE_OFFSET/10, STATS_HEIGHT*4/5 );
 		}
+		
 		
 		//Loops through data to make a chart based on the numbers
 		for (int i=0; i< healthyLog.size() && i*LINE_WIDTH < this.getWidth() ; i++ ) {
 			
 			//sum to get total to calculate percentage
-			double total = healthyLog.get(i) + infectedLog.get(i) + recoveredLog.get(i);
+			double total = healthyLog.get(i) + infectedLog.get(i) + recoveredLog.get(i) + deadLog.get(i);
 			
 			//make it percentageBased
 			int healthyPercent = (int)(STATS_HEIGHT * healthyLog.get(i) / total);
 			int infectedPercent = (int)(STATS_HEIGHT * infectedLog.get(i) / total);
 			int recoveredPercent = (int)(STATS_HEIGHT * recoveredLog.get(i) / total);
+			int deadPercent = (int)(STATS_HEIGHT * deadLog.get(i) / total);
+
 			
 			//offset slightly to get lines to show up
 			int yPos = 1;
@@ -101,6 +113,11 @@ public class PandemicStatsComponent extends JComponent {
 			
 			g2.setColor(Person.INFECTED_COLOR);
 			g2.fillRect(SIDE_OFFSET + i*LINE_WIDTH, yPos, LINE_WIDTH, yPos + infectedPercent );
+			
+//			g2.setColor(Person.DEAD_COLOR);
+//			g2.fillRect(SIDE_OFFSET + i*LINE_WIDTH, yPos, LINE_WIDTH, yPos + deadPercent );
+//			yPos += deadPercent;
+
 		}	
 	}
 }

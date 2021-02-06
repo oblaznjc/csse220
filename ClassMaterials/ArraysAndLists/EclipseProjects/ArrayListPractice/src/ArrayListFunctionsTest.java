@@ -47,6 +47,22 @@ public class ArrayListFunctionsTest {
 		test.add("b");
 		ArrayListFunctions.removeLongStrings(test);
 		assertEquals("[a, b]", test.toString());
+		
+		/**
+		 * Jacob added more tests to check edge cases
+		 */
+		
+		test = new ArrayList<String>();
+		test.add("bbbbbbbbb");
+		test.add("aaaaaa");
+		test.add("a");
+		test.add("aaaaaa");
+		test.add("bbbbbbbbb");
+		test.add("bbbbbbbbb");
+		test.add("b");
+		ArrayListFunctions.removeLongStrings(test);
+		assertEquals("[a, b]", test.toString());
+		
 	}
 
 }

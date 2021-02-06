@@ -14,19 +14,19 @@ public class WhackABug {
 	 *            Command-line arguments, ignored here.
 	 */
 	public static void main(String[] args) {
-		// TODO: uncomment call to a buggy method, use debugger to find the
+		// DONE: uncomment call to a buggy method, use debugger to find the
 		// bug, repeat
-		// hasABug1();
-		// hasABug2();
-		// hasABug3();
-		// hasABug4();
+		hasABug1();
+		hasABug2();
+		hasABug3();
+		hasABug4();
 	}
 
 	/*
 	 * Prints powers of 2 from 2^0 up to 2^9.
 	 */
 	private static void hasABug1() {
-		// TODO: find the bug, add comment saying what it was, fix the bug
+		// DONE: find the bug, add comment saying what it was, fix the bug
 		System.out.println("Powers of two:");
 		int base = 2;
 		int exp = 0;
@@ -34,8 +34,8 @@ public class WhackABug {
 		while (numberToPrint > 0) {
 			int power = (int) Math.pow(base, exp);
 			System.out.printf("%d ^ %d = %3d%n", base, exp, power);
-			exp++;
-			numberToPrint++;
+			exp++; 
+			numberToPrint--; // number to print started at ten and counted forever
 		}
 	}
 
@@ -43,15 +43,16 @@ public class WhackABug {
 	 * Prints cosines: cos(0), cos(30), cos(60), ... cos(360).
 	 */
 	private static void hasABug2() {
-		// TODO: find the bug, add comment saying what it was, fix the bug
+		// DONE: find the bug, add comment saying what it was, fix the bug
 		final double STEP_SIZE_DEG = 30.0;
 		final double STEP_SIZE = Math.toRadians(STEP_SIZE_DEG);
 		System.out.printf("Values of cosine, every %.2f*pi radians:%n",
 				STEP_SIZE / Math.PI);
 		double angle = 0.0;
 		while (angle <= Math.PI * 2.0) {
+			angle = angle + STEP_SIZE; // Missing incremental growth
 			double coef = angle / Math.PI;
-			double value = Math.cos(angle);
+			double value = Math.cos(coef * Math.PI);
 			System.out.printf("cos(%4.2f*pi) = %4.2f%n", coef, value);
 		}
 	}
@@ -61,7 +62,7 @@ public class WhackABug {
 	 */
 	private static void hasABug3() {
 		System.out.println("Rounding errors when counting by tenths:");
-		for (double d = 0.0; d != 1.0; d += 0.1) {
+		for (double d = 0.0; d < 1.0; d += 0.1) { // used != 1.0 instead of "<"
 			System.out.printf("%1.1f is actually %s%n", d, Double.toString(d));
 		}
 	}
@@ -71,7 +72,7 @@ public class WhackABug {
 	 */
 	private static void hasABug4() {
 		String msg = "Rose";
-		for (int i = 0; i <= msg.length(); i++) {
+		for (int i = 0; i < msg.length(); i++) { // "<=" insterad of just "<" which went beyond line length.
 			System.out.printf("Character %d: %c%n", i, msg.charAt(i));
 		}
 	}
