@@ -1,4 +1,4 @@
-import java.util.HashMap;
+package implementingDP2;
 import java.util.Scanner;
 
 /**
@@ -15,7 +15,7 @@ public class QuizSimulatorMain {
 	//Used to remind user of commands available
 	public final static String HELP_STRING = "create-question [id] [answer] [prompt]\n" 
 											+ "create-quiz [id] \n"
-											+ "create-quiz-tester [id] [searchString] \n"
+											+ "create-quiz-tester [id] [targetString] \n"
 											+ "report-overall-quiz-tester-score [id] \n"
 											+ "report-quiz-tester-score-on-quiz [testerId] [quizId] \n"
 											+ "add-question-to-quiz [questionId] [quizId] \n"
@@ -34,7 +34,7 @@ public class QuizSimulatorMain {
 			String commandLine = scanner.nextLine();
 			String result = simulator.handleCommand(commandLine);
 			System.out.println(result);
-		}
+		} // end while
 	}
 	/**
 	 *  Do not change this method, it parses the input from the user so you don't have to.
@@ -61,8 +61,8 @@ public class QuizSimulatorMain {
 			toReturn = "OK: created quiz";
 		} else if (commandType.equals("create-quiz-tester")) {
 			int id = input.nextInt();
-			String searchString = input.next();
-			handleCreateQuizTester(id, searchString);
+			String targetString = input.next();
+			handleCreateQuizTester(id, targetString);
 			toReturn = "OK: created quiz tester";
 		} else if (commandType.equals("report-overall-quiz-tester-score")) {
 			int id = input.nextInt();
@@ -165,12 +165,12 @@ public class QuizSimulatorMain {
 		return null;
 	}
 	/**
-	 * Creates a new QuizTester with a provide id and searchString used to answer questions
+	 * Creates a new QuizTester with a provide id and targetString used to answer questions
 	 * 
 	 * @param id
-	 * @param searchString
+	 * @param targetString
 	 */
-	public void handleCreateQuizTester(int id, String searchString) {
+	public void handleCreateQuizTester(int id, String targetString) {
 		//TODO complete this method
 	}
 	/**
