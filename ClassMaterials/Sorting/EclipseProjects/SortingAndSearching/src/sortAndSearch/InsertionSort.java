@@ -20,7 +20,7 @@ public class InsertionSort {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Testing insertion sort:");
-		int n = 10;
+		int n = 100000;
 
 		Integer[] array = randomArray(n);
 		StopWatch timer = new StopWatch();

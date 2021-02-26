@@ -1,0 +1,33 @@
+public void generateOwnerReport(String OP_SYS_TYPE) {
+		System.out.printf("|%.50s|\n", "++++++++++++++++++++++++++++++++++++++++++++++");
+
+		if (OP_SYS_TYPE.equals("Mac OS")) {
+			System.out.printf("|%.50s|\n", "+ EIT Servicing MacBooks +++++++++++++++++++++");
+			System.out.printf("|%.46s|\n", "                                              ");
+			System.out.printf("|%.46s|\n", "                                              ");
+			System.out.printf("|     %10s%.1f      %.15s          |\n", OP_SYS_TYPE, this.currentOpSysVersion,
+					this.ownerName);
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "+ End Report +++++++++++++++++++++++++++++++++");
+		} else if (OP_SYS_TYPE.equals("Chrome OS")) {
+			System.out.printf("|%.50s|\n", "++++++++++++ EIT Servicing Surfaces ++++++++++");
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "" + "                                              ");
+			System.out.printf("|     %10s%.1f      %-10s            |\n", OP_SYS_TYPE, this.currentOpSysVersion,
+					this.ownerName);
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "+++++++++++++++++++++++++++++++++ End Report +");
+		} else {
+			System.out.printf("|%.50s|\n", "++++++++++++++++++ EIT Servicing ChromeBooks +");
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|     %10s%.1f      %-10s            |\n", OP_SYS_TYPE, this.currentOpSysVersion,
+					this.ownerName);
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "                                              ");
+			System.out.printf("|%.50s|\n", "+++++++++++++++++ End Report +++++++++++++++++");
+		}
+
+		System.out.printf("|%.50s|\n\n\n", "++++++++++++++++++++++++++++++++++++++++++++++");

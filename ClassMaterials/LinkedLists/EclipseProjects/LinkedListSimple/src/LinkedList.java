@@ -1,24 +1,22 @@
 
 public class LinkedList {
-	
-	
+
 	private class Node {
 		public int value;
 		public Node next;
-		
+
 		public Node(int value, Node next) {
 			this.value = value;
 			this.next = next;
 		}
 	}
-	
+
 	private Node head;
-	
+
 	public LinkedList() {
 		head = null;
 	}
-	
-	
+
 	/**
 	 * 
 	 * Adds a value at the beginning of the list
@@ -26,18 +24,17 @@ public class LinkedList {
 	 * @param value
 	 */
 	public void addAtBeginning(int value) {
-		Node newNode = new Node(value,this.head);
+		Node newNode = new Node(value, this.head);
 		this.head = newNode;
 	}
-	
+
 	/**
-	 * Converts the list to a string like this:
-	 * 1->2->3->null
+	 * Converts the list to a string like this: 1->2->3->null
 	 */
 	public String toString() {
 		Node current = this.head;
 		String result = "";
-		while(current != null) {
+		while (current != null) {
 			result += current.value;
 			result += "->";
 			current = current.next;
@@ -45,7 +42,7 @@ public class LinkedList {
 		result += "null";
 		return result;
 	}
-	
+
 	/**
 	 * 
 	 * Example of how the linked list is used
@@ -59,7 +56,7 @@ public class LinkedList {
 		list.addAtBeginning(3);
 		System.out.println(list.toString());
 	}
-	
+
 	/**
 	 * Returns the number of elements in the linked list
 	 * 
@@ -68,25 +65,42 @@ public class LinkedList {
 	 * @return
 	 */
 	public int size() {
-		return 0;
+		Node current = this.head;
+		int result = 0;
+		while (current != null) {
+			result += 1;
+			current = current.next;
+		}
+		return result;
 	}
-	
+
 	/**
 	 * 
 	 * Add value at the end of the linked list
 	 * 
-	 * To solve this problem you'll need a loop
-	 * to find the last element of the list.
+	 * To solve this problem you'll need a loop to find the last element of the
+	 * list.
 	 * 
-	 * You'll also need a special case for the
-	 * empty list.
+	 * You'll also need a special case for the empty list.
 	 * 
 	 * @param value
 	 */
 	public void addAtEnd(int value) {
+		if (this.size() < 1) {
+			Node newNode = new Node(value, this.head);
+			this.head = newNode;
+		} else {
+			Node current = this.head;
+			while (current.next != null) {
+				current = current.next;
+			}
+			Node newNode = new Node(value, this.head);
+			current.next = newNode;
+			newNode.next = null;
+		}
 
 	}
-	
+
 	/**
 	 * 
 	 * Inserts a particular value after another value in the list
@@ -105,9 +119,17 @@ public class LinkedList {
 	 * @param valueToInsertAfter
 	 */
 	public void addAfterValue(int valueToAdd, int valueToInsertAfter) {
-
+		Node current = this.head;
+		Node pushed = null;
+		while (current.value != valueToInsertAfter) {
+			current = current.next;
+			pushed = current.next;
+		}
+		Node newNode = new Node(valueToAdd, this.head);
+		current.next = newNode;
+		newNode.next = pushed;
 	}
-	
+
 	/**
 	 * 
 	 * Inserts a particular value before another value in the list
@@ -122,8 +144,8 @@ public class LinkedList {
 	 * 
 	 * You can assume the value will definitely be in the list
 	 * 
-	 * To solve this, you'll need to keep track of both a current
-	 * and previous node as you go through the list.
+	 * To solve this, you'll need to keep track of both a current and previous node
+	 * as you go through the list.
 	 * 
 	 * You'll also need a special case for the head of the list.
 	 * 
@@ -132,65 +154,112 @@ public class LinkedList {
 	 */
 	public void addBeforeValue(int valueToAdd, int valueToInsertBefore) {
 
+		Node current = this.head;
+		Node pushed = null;
+		if (current.value == valueToInsertBefore) {
+			pushed = current;
+			Node newNode = new Node(valueToAdd, this.head);
+			this.head = newNode;
+			this.head.next = pushed;
+			return;
+		}
+		while (current.next.value != valueToInsertBefore) {
+			current = current.next;
+			pushed = current.next;
+		}
+		Node newNode = new Node(valueToAdd, this.head);
+		current.next = newNode;
+		newNode.next = pushed;
 	}
-	
+
 	/**
 	 * 
-	 * This constructor takes and array and makes a linked list
-	 * containing all the elements in the array.
+	 * This constructor takes and array and makes a linked list containing all the
+	 * elements in the array.
 	 * 
-	 * You could do this by repeatedly calling add at end
-	 * but be classy and construct the list by hand.
+	 * You could do this by repeatedly calling add at end but be classy and
+	 * construct the list by hand.
 	 * 
 	 * You can assume the array has at least one element.
 	 * 
 	 * @param data
 	 */
 	public LinkedList(int[] data) {
-
+		Node parent = new Node(data[0], this.head);
+		this.head = parent;
+		for (int i = 1; i < data.length; i++) {
+			Node child = new Node(data[i], this.head);
+			parent.next = child;
+			parent = child;
+		}
+		parent.next = null;
 	}
-	
+
 	/**
 	 * Removes the first element from the list
 	 * 
-	 * If the list is empty, throw an exception like this:
-	 * throw new RuntimeException("Attempt to remove from an empty list");
+	 * If the list is empty, throw an exception like this: throw new
+	 * RuntimeException("Attempt to remove from an empty list");
 	 */
 	public void removeBeginning() {
+		try {
+			this.head = this.head.next;
+		} catch (NullPointerException e) {
+			throw new RuntimeException("Attempt to remove from an empty list");
+		}
 
 	}
-	
+
 	/**
 	 * Removes the last element from the list
 	 * 
 	 * You'll need a special case for the 1 element list
 	 * 
-	 * If the list is empty, throw an exception like this:
-	 * throw new RuntimeException("Attempt to remove from an empty list");
+	 * If the list is empty, throw an exception like this: throw new
+	 * RuntimeException("Attempt to remove from an empty list");
 	 */
 	public void removeEnd() {
+		if (this.size() == 1) {
+			this.head = null;
+		}
+		try {
+			Node current = this.head;
+			Node previous = current;
+			while (current.next != null) {
+				previous = current;
+				current = current.next;
+			}
+			previous.next = null;
+			return;
+		} catch (NullPointerException e) {
+			this.head = null;
+			// throw new RuntimeException("Attempt to remove from an empty list");
+		}
 
 	}
-	
+
 	/**
 	 * Removes the element after a particular value in the list
 	 * 
-	 * For example, given this this list:
-	 * 1->2->3->null
+	 * For example, given this this list: 1->2->3->null
 	 * 
-	 * Removing after the element 1 would result in:
-	 * 1->3->null
+	 * Removing after the element 1 would result in: 1->3->null
 	 * 
 	 * 
-	 * You can assume that both the element and the element after
-	 * exist in the list.
+	 * You can assume that both the element and the element after exist in the list.
 	 * 
 	 * @param valueToRemoveAfter
 	 */
 	public void removeAfter(int valueToRemoveAfter) {
-
+		Node current = this.head;
+		Node after = current.next;
+		while (current.value != valueToRemoveAfter) {
+			current = current.next;
+			after = current.next;
+		}
+		current.next = after.next;
 	}
-	
+
 	/**
 	 * 
 	 * Removes all the nodes with a particular value from the list
@@ -199,13 +268,27 @@ public class LinkedList {
 	 * 
 	 * 1->2->3->2->null
 	 * 
-	 * Removing all the 2s would result in:
-	 * 1->3->null
+	 * Removing all the 2s would result in: 1->3->null
 	 * 
 	 * @param nodesWithValue
 	 */
 	public void removalAll(int nodesWithValue) {
-
-	}	
-
+		Node current = this.head;
+		Node previous = current;
+		while (current.next != null) {
+			if (current.value == nodesWithValue & current == this.head) {
+				removeBeginning();
+			} else if (current.value == nodesWithValue) {
+				previous.next = current.next;
+				previous = current;
+				current = current.next;
+			} else {
+				previous = current;
+				current = current.next;
+			}
+		}
+		if (current.value == nodesWithValue & current.next == null) {
+			previous.next = null;
+		}
+	}
 }

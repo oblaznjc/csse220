@@ -3,13 +3,11 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class LinkedListTest {
 
-	
 	private LinkedList oneTwoThree;
 	private LinkedList emptyList;
-	
+
 	@Before
 	public void setUp() throws Exception {
 		oneTwoThree = new LinkedList();
@@ -23,7 +21,7 @@ public class LinkedListTest {
 	public void testAddAtBeginning() {
 		assertEquals("1->2->3->null", oneTwoThree.toString());
 	}
-	
+
 	@Test
 	public void testSize() {
 		assertEquals(3, oneTwoThree.size());
@@ -58,7 +56,7 @@ public class LinkedListTest {
 
 	@Test
 	public void testLinkedListIntArray() {
-		int[] test = {3,4,5};
+		int[] test = { 3, 4, 5 };
 		LinkedList list = new LinkedList(test);
 		assertEquals("3->4->5->null", list.toString());
 	}
@@ -87,7 +85,7 @@ public class LinkedListTest {
 
 	@Test
 	public void testRemovalAll() {
-		int[] data = {2,1,2,3,2,4,2};
+		int[] data = { 2, 1, 2, 3, 2, 4, 2 };
 		LinkedList list = new LinkedList(data);
 		list.removalAll(2);
 		assertEquals("1->3->4->null", list.toString());
