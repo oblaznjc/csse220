@@ -17,8 +17,8 @@ public class SinglyLinkedListTest {
 	protected ILinkedList list1, list2, list3;
 
 	/**
-	 * Sets up a few {@link SinglyLinkedList} instances to test the {@link SinglyLinkedList}
-	 * class.
+	 * Sets up a few {@link SinglyLinkedList} instances to test the
+	 * {@link SinglyLinkedList} class.
 	 * 
 	 * @throws Exception
 	 */
@@ -47,23 +47,23 @@ public class SinglyLinkedListTest {
 	}
 
 	/**
-	 * Tests the {@link SinglyLinkedList#size()} method. This method assumes that the
-	 * {@link SinglyLinkedList#add(Object)} method works.
+	 * Tests the {@link SinglyLinkedList#size()} method. This method assumes that
+	 * the {@link SinglyLinkedList#add(Object)} method works.
 	 * 
 	 */
 	@Test
 	public void testSize() {
-		assertEquals((Integer)0, this.list1.size());
+		assertEquals((Integer) 0, this.list1.size());
 		this.list2.add(5);
-		assertEquals((Integer)1, this.list2.size());
+		assertEquals((Integer) 1, this.list2.size());
 		this.list1.add(2);
-		assertEquals((Integer)1, this.list1.size());
+		assertEquals((Integer) 1, this.list1.size());
 		this.list1.add(6);
-		assertEquals((Integer)2, this.list1.size());
+		assertEquals((Integer) 2, this.list1.size());
 		this.list1.add(7);
-		assertEquals((Integer)3, this.list1.size());
+		assertEquals((Integer) 3, this.list1.size());
 		this.list1.add(8);
-		assertEquals((Integer)4, this.list1.size());
+		assertEquals((Integer) 4, this.list1.size());
 
 	}
 
@@ -86,13 +86,14 @@ public class SinglyLinkedListTest {
 	}
 
 	/**
-	 * Tests the {@link SinglyLinkedList#insertAtIndex(int, Object)} method for bad cases.
+	 * Tests the {@link SinglyLinkedList#insertAtIndex(int, Object)} method for bad
+	 * cases.
 	 * 
 	 */
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testInsertAtIndexBad() {
-		this.list1.insertAtIndex(0,6);
-		this.list1.insertAtIndex(0,2);
+		this.list1.insertAtIndex(0, 6);
+		this.list1.insertAtIndex(0, 2);
 		this.list1.insertAtIndex(1, 7);
 		this.list1.insertAtIndex(0, 8);
 		this.list1.insertAtIndex(6, 10);
@@ -121,8 +122,9 @@ public class SinglyLinkedListTest {
 
 	/**
 	 * Tests the {@link SinglyLinkedList#remove(Object)} method. This method assumes
-	 * that {@link SinglyLinkedList#add(Object)}, {@link SinglyLinkedList#insertAtIndex(int, Object)},
-	 * and {@link SinglyLinkedList#size()} all work.
+	 * that {@link SinglyLinkedList#add(Object)},
+	 * {@link SinglyLinkedList#insertAtIndex(int, Object)}, and
+	 * {@link SinglyLinkedList#size()} all work.
 	 * 
 	 */
 	@Test
@@ -134,24 +136,22 @@ public class SinglyLinkedListTest {
 		this.list1.add(9);
 		this.list1.add(7);
 		assertTrue(this.list1.remove(6));
-		assertEquals((Integer)5, this.list1.size());
-		assertEquals( "[8, 2, 7, 9, 7] first=[8] last=[7]", this.list1.toString() );
+		assertEquals((Integer) 5, this.list1.size());
+		assertEquals("[8, 2, 7, 9, 7] first=[8] last=[7]", this.list1.toString());
 		assertTrue(this.list1.remove(7));
-		assertEquals( "[8, 2, 9, 7] first=[8] last=[7]", this.list1.toString() );
-		assertEquals((Integer)4, this.list1.size());
+		assertEquals("[8, 2, 9, 7] first=[8] last=[7]", this.list1.toString());
+		assertEquals((Integer) 4, this.list1.size());
 		assertTrue(this.list1.remove(7));
-		assertEquals( "[8, 2, 9] first=[8] last=[9]", this.list1.toString() );
-		assertEquals((Integer)3, this.list1.size());
+		assertEquals("[8, 2, 9] first=[8] last=[9]", this.list1.toString());
+		assertEquals((Integer) 3, this.list1.size());
 		assertTrue(this.list1.remove(8));
-		assertEquals( "[2, 9] first=[2] last=[9]", this.list1.toString() );
-		assertEquals((Integer)2, this.list1.size());
+		assertEquals("[2, 9] first=[2] last=[9]", this.list1.toString());
+		assertEquals((Integer) 2, this.list1.size());
 		assertFalse(this.list1.remove(8));
-		assertEquals( "[2, 9] first=[2] last=[9]", this.list1.toString() );
+		assertEquals("[2, 9] first=[2] last=[9]", this.list1.toString());
 		assertFalse(this.list3.remove(4));
-		assertEquals( "[2, 9] first=[2] last=[9]", this.list1.toString() );
+		assertEquals("[2, 9] first=[2] last=[9]", this.list1.toString());
 	}
-
-	
 
 	/**
 	 * 
@@ -185,7 +185,7 @@ public class SinglyLinkedListTest {
 		this.list1.add(5);
 		this.list1.add(6);
 		assertEquals(new Integer(4), this.list1.set(3, 12));
-		assertEquals((Integer)6, this.list1.size());
+		assertEquals((Integer) 6, this.list1.size());
 		assertEquals("[1, 2, 3, 12, 5, 6] first=[1] last=[6]", this.list1.toString());
 		assertEquals(new Integer(1), this.list1.set(0, 9));
 		assertEquals("[9, 2, 3, 12, 5, 6] first=[9] last=[6]", this.list1.toString());
@@ -225,14 +225,12 @@ public class SinglyLinkedListTest {
 	}
 
 	/**
-	 * Tests the {@link SinglyLinkedList#set(int, Object)} method for yet another bad
-	 * case.
+	 * Tests the {@link SinglyLinkedList#set(int, Object)} method for yet another
+	 * bad case.
 	 */
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testSetBad3() {
 		this.list3.set(0, 5);
 	}
 
-
-	
 }

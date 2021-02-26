@@ -9,15 +9,24 @@ import sll.SinglyLinkedList;
 public class Algorithms {
 	/**
 	 * 
-	 * Write a function that takes an array of integers and returns a linked
-	 * list. The linked list should contain only the integers in the original
-	 * list that begin with the number 1.
+	 * Write a function that takes an array of integers and returns a linked list.
+	 * The linked list should contain only the integers in the original list that
+	 * begin with the number 1.
 	 * 
 	 * So arraylistOf1s({123,456,1, 21}) yields [123, 1]
 	 */
 	public static SinglyLinkedList arraylistOf1s(int[] integers) {
-		// TODO: Solve me
-		return null;
+		SinglyLinkedList linkedList = new SinglyLinkedList();
+		for (int element : integers) {
+			int originalElement = element;
+			while (element >= 10) {
+				element = Math.floorDiv(element, 10);
+			}
+			if (element == 1) {
+				linkedList.add(originalElement);
+			}
+		}
+		return linkedList;
 	}
 
 	/**
@@ -29,7 +38,7 @@ public class Algorithms {
 	 * 
 	 */
 	public static void insertIntoSorted(ILinkedList list, int number) {
-		// TODO: Solve me
+		list
 	}
 
 	/**
@@ -45,8 +54,7 @@ public class Algorithms {
 	/**
 	 * Returns whether the given linked list is sorted in increasing order.
 	 * 
-	 * So checkSorted([1,2,3]) yields true.
-	 * checkSorted ([1,3,2]) yields false.
+	 * So checkSorted([1,2,3]) yields true. checkSorted ([1,3,2]) yields false.
 	 * checkSorted ([]) yields true.
 	 */
 	public static boolean checkSorted(ILinkedList list) {
@@ -69,8 +77,8 @@ public class Algorithms {
 	 * Recall: fib(i) = fib(i-1) + fib(i-2)
 	 * 
 	 * [0,1] is too short to be a fibonacci sequence. [1,2,3] is a fibonacci
-	 * sequence because 3 = 2 + 1. [0,1,1] is a fibonacci sequence because 1 = 1
-	 * + 0. [1,4,5,9,14] is a fibonacci sequence.
+	 * sequence because 3 = 2 + 1. [0,1,1] is a fibonacci sequence because 1 = 1 +
+	 * 0. [1,4,5,9,14] is a fibonacci sequence.
 	 */
 	public static boolean isFibonacciSequence(ILinkedList list) {
 		// TODO: Solve me
@@ -82,7 +90,8 @@ public class Algorithms {
 	 * 
 	 * If i==0, return the value of the given node.
 	 * 
-	 * If you are passed an invalid index you should throw an IndexOutOfBoundsException.
+	 * If you are passed an invalid index you should throw an
+	 * IndexOutOfBoundsException.
 	 * 
 	 */
 	public static Integer recursiveGet(int index, IListNode iListNode) {
